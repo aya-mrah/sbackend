@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -49,10 +50,13 @@ public class CategorieController {
 
 
     @GetMapping("/categorie/{id}")
-    public Categories getCategorieById(@PathVariable(value = "id") long Id) {
-        return categorierepo.findById(Id).orElseThrow(null);
+    public Optional<Categories> getCategorieById(@PathVariable(value = "id") long Id) {
+        if (categorierepo.findById(Id) != null) {
+            return categorierepo.findById(Id);
+        } else {
+         return null;
+        }
     }
-
     @PostMapping("/categorieadd")
     public Categories createCategorie(@Valid @RequestBody Categories categorie) {
         return categorierepo.save(categorie);
@@ -73,7 +77,7 @@ public class CategorieController {
     public ResponseEntity<?> delete(@PathVariable Long categorie) {
         List<Produit> ca = (List<Produit>) produitr.trouveInscrit(categorie);
          produitr.deleteAll(ca);
-       Categories categori = categorierepo.findById(categorie).orElseThrow(null);
+         Categories categori = categorierepo.findById(categorie).orElseThrow(null);
 
         categorierepo.delete(categori);
 

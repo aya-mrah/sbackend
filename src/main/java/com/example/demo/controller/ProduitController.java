@@ -26,10 +26,7 @@ public class ProduitController {
     public ProduitController(ProduitRepository productRepository) {
         this.produitr = productRepository;
     }
-   /* @Autowired
-    public ProduitController(ProduitRepository productRepository) {
-        this.produitr = productRepository;
-    }*/
+
 
     @GetMapping("/get")
     public List<Produit> getAllProduts() {

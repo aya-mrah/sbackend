@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,7 +28,7 @@ public class Categories implements Serializable{
 
     @OneToMany(mappedBy="categorie", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JsonIgnore
-    private List<Produit> produits=new ArrayList<>();
+    private Set<Produit> products ;
 
 
 }
