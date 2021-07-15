@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 
 @RestController
@@ -50,12 +49,10 @@ public class CategorieController {
 
 
     @GetMapping("/categorie/{id}")
-    public Optional<Categories> getCategorieById(@PathVariable(value = "id") long Id) {
-        if (categorierepo.findById(Id) != null) {
-            return categorierepo.findById(Id);
-        } else {
-         return null;
-        }
+    public Categories getCategorieById(@PathVariable(value = "id") long Id) {
+
+            return categorierepo.findById(Id).orElseThrow(null);
+
     }
     @PostMapping("/categorieadd")
     public Categories createCategorie(@Valid @RequestBody Categories categorie) {
