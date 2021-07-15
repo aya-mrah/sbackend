@@ -49,17 +49,17 @@ public class CategorieController {
         return ResponseEntity.ok().build();
     }
 
-
-
     @GetMapping("/categorie/{id}")
     public Optional<Categories> getCategorieById(@PathVariable(value = "id") long Id) {
           if(categorierepo.findById(Id)!=null) {
               return categorierepo.findById(Id);
           }else{
-           return null;
+           return Optional.empty();
           }
 
     }
+
+
     @PostMapping("/categorieadd")
     public Categories createCategorie(@Valid @RequestBody Categories categorie) {
         return categorierepo.save(categorie);
