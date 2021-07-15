@@ -4,11 +4,14 @@ import com.example.demo.models.Categories;
 import com.example.demo.models.Produit;
 import com.example.demo.repositories.CategorieRepository;
 import com.example.demo.repositories.ProduitRepository;
+import jdk.nashorn.internal.runtime.Context;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -49,9 +52,12 @@ public class CategorieController {
 
 
     @GetMapping("/categorie/{id}")
-    public Categories getCategorieById(@PathVariable(value = "id") long Id) {
-
-            return categorierepo.findById(Id).orElseThrow(null);
+    public Optional<Categories> getCategorieById(@PathVariable(value = "id") long Id) {
+          if(categorierepo.findById(Id)!=null) {
+              return categorierepo.findById(Id);
+          }else{
+           return null;
+          }
 
     }
     @PostMapping("/categorieadd")
