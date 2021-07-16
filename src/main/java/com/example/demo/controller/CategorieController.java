@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 
@@ -50,8 +51,11 @@ public class CategorieController {
     }
 
     @GetMapping("/categorie/{id}")
+
     public Optional<Categories> getCategorieById(@PathVariable(value = "id") long Id) {
-          if(categorierepo.findById(Id)!=null) {
+      Optional<Categories> optCat = categorierepo.findById(Id);
+
+          if(optCat.isPresent()) {
               return categorierepo.findById(Id);
           }else{
            return Optional.empty();

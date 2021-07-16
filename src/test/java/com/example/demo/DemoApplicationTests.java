@@ -11,6 +11,7 @@ import com.example.demo.models.Categories;
 import com.example.demo.repositories.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
@@ -43,6 +44,12 @@ class DemoApplicationTests {
 		List<Categories>list=(List<Categories>) categorierepo.findAll();
 		assertThat(list).size().isGreaterThan(0);
 		System.out.println("list %d:"+list.size());
+
+	}
+	@Test
+	void singleCategory () {
+		Categories category  = categorierepo.findById(1L).get() ;
+		assertEquals(100 , category.getQT());
 
 	}
 
