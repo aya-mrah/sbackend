@@ -1,11 +1,13 @@
 package com.example.demo;
 
+import com.example.demo.models.Produit;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 import com.example.demo.models.Categories;
 import com.example.demo.repositories.*;
@@ -52,15 +54,19 @@ class DemoApplicationTests {
 		assertEquals(100 , category.getQT());
 
 	}
+	@Test
+	public void testCreateProduit(){
+		Timestamp t=new Timestamp(System.currentTimeMillis());
+		long id = 32;
+		Optional<Categories> optCat = categorierepo.findById(id);
+		Categories cat = optCat.get() ;
+		Produit p= new Produit(1L,"test2",50,true, t,null,"unknown.jpg",cat);
 
-	/*@Test
-	public String getCategorieById( ) {
-		long idcategorie = 2;
 
-			return categorierepo.findById(idcategorie).toString();
+		assertThat(produitr.save(p)).isNotNull();
 
 	}
-*/
+
 
 
 

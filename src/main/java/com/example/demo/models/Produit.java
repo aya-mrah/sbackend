@@ -1,6 +1,8 @@
 package com.example.demo.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -11,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity @Data
+@Entity @Data @NoArgsConstructor @AllArgsConstructor
 public class Produit implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +28,5 @@ public class Produit implements Serializable{
     @ManyToOne()
     @JoinColumn(name="idCategorie")
     private Categories categorie;
-
 
 }

@@ -28,9 +28,9 @@ public class Categories implements Serializable{
     private Timestamp Date_mmodif =null;
 
 
-    @OneToMany(mappedBy="categorie", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="categorie", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JsonIgnore
-    private List<Produit> product;
+    private Set<Produit> product;
 
 
 }

@@ -39,11 +39,13 @@ public class CategorieController {
     public List<Categories> getAllCategories() {
         List <Categories> categories = categorierepo.findAll();
         return categories;
+
     }
 
     @DeleteMapping("/categoriedelete/{id}")
     public ResponseEntity<?> deleteCategories(@PathVariable(value = "id") Long categorieId) {
         Categories categorie = categorierepo.findById(categorieId).orElseThrow(null);
+
 
         categorierepo.delete(categorie);
 
@@ -53,6 +55,7 @@ public class CategorieController {
     @GetMapping("/categorie/{id}")
 
     public Optional<Categories> getCategorieById(@PathVariable(value = "id") long Id) {
+      List<Produit> ca = (List<Produit>) produitr.trouveInscrit(Id);
       Optional<Categories> optCat = categorierepo.findById(Id);
 
           if(optCat.isPresent()) {

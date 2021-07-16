@@ -1,0 +1,8 @@
+com\example\demo\DemoApplication.class
+com\example\demo\repositories\CategorieRepository.class
+com\example\demo\controller\ProduitController.class
+com\example\demo\models\Categories.class
+com\example\demo\models\Produit.class
+com\example\demo\controller\CategorieController.class
+com\example\demo\repositories\ProduitRepository.class
+com\example\demo\models\client.class
