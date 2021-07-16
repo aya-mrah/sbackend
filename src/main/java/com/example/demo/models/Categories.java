@@ -12,6 +12,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.Id;
+import javax.swing.*;
+
 
 @Entity @Data @NoArgsConstructor @AllArgsConstructor
 public class Categories implements Serializable{
@@ -26,9 +28,9 @@ public class Categories implements Serializable{
     private Timestamp Date_mmodif =null;
 
 
-    @OneToMany(mappedBy="categorie", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy="categorie", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
-    private Set<Produit> products ;
+    private List<Produit> product;
 
 
 }
